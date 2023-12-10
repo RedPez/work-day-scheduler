@@ -24,7 +24,8 @@ for (let i = 1; i <= timeBlocks; i++) {
   // Save content to local storage
   function saveToLocalStorage() {
     let updatedContent = inputElement.innerText;
-    console.log(`Your ${i}am Task is: ` + updatedContent);
+    let time = $(`#time-${i}`).text();
+    console.log(`Your ${time} task is: ` + updatedContent);
 
     localStorage.setItem(`input-${i}`, updatedContent);
   }
@@ -36,21 +37,24 @@ for (let i = 1; i <= timeBlocks; i++) {
 //Add times to calendar using jQuery
 
 // Function to set the time for each element with ID starting from 1 to timeBlocks
-function setTimeForElements() {
+function diaryTimeElement() {
   for (let i = 1; i <= timeBlocks; i++) {
     // Get the current time in 24-hour format
-    const currentTime = dayjs().hour(i).minute(0).format("HH:mm");
+    const diaryTime = dayjs()
+      .hour(i + 7)
+      .minute(0)
+      .format("HH:mm");
 
     // Set the time for the corresponding element
-    $(`#time-${i}`).text(currentTime);
+    $(`#time-${i}`).text(diaryTime);
 
     // Display the time within the <p> tag with class "hour"
-    $(`#time-${i}`).closest(".hour").attr("data-time", currentTime);
+    $(`#time-${i}`).closest(".hour").attr("data-time", diaryTime);
   }
 }
 
 // Call the function to set the time when the page loads
-setTimeForElements();
+diaryTimeElement();
 
 /*Script for colour change depending on time*/
 let currentHour = dayjs().hour();
@@ -69,9 +73,9 @@ function changeColour() {
     inputColumn.removeClass("past present future");
 
     // Indicate if past, present, or future via class
-    if (i < currentHour) {
+    if (i < diaryTimeElement) {
       inputColumn.addClass("past");
-    } else if (i === currentHour) {
+    } else if (i === diaryTimeElement) {
       inputColumn.addClass("present");
     } else {
       inputColumn.addClass("future");
