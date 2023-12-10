@@ -1,10 +1,9 @@
 /* Script for the day/date timer*/
-setInterval(myTimer, 60000);
+setInterval(myTimer, 1000);
 
 function myTimer() {
   let day = dayjs().format("dddd");
   let date = dayjs().format("DD MMM YYYY");
-  let time = dayjs().format("HH:mm:ss");
   $("#currentDay").text(day + ", " + date);
 }
 
@@ -44,13 +43,16 @@ function changeColour() {
   for (let i = 1; i <= timeBlocks; i++) {
     // select inputElement
     const inputElement = document.querySelector("#input-element-${i}");
-  }
 
-  /*if (i < currentHour){
-  inputElement.css() //add a css selector? 
-} else if (i === currentHour) {
-  add present colour
-} else {
-  add future colour;
-}*/
+    inputElement.classList.remove("past", "present", "future");
+
+    //Indicate if past, present or future and change colour
+    if (i < currentHour) {
+      inputElement.classList.add("past");
+    } else if (i === currentHour) {
+      inputElement.classList.add("present");
+    } else {
+      inputElement.classList.add("future");
+    }
+  }
 }
