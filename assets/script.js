@@ -35,21 +35,22 @@ for (let i = 1; i <= timeBlocks; i++) {
 }
 
 /*Script for colour change depending on time*/
-let timeColor = document.querySelector("");
+let currentHour = dayjs().hour();
 //hmmmmm how do we do this?
 
-//probably need a function and a loop
+//Function
+function changeColour() {
+  //Loop
+  for (let i = 1; i <= timeBlocks; i++) {
+    // select inputElement
+    const inputElement = document.querySelector("#input-element-${i}");
+  }
 
-//Loop
-for (let i = 1; i <= timeBlocks; i++) {
-  // select inputElement
-  const inputElement = document.querySelector("#input-element-${i}");
-}
-
-/*if (i < currentHour){
-  add past colour
+  /*if (i < currentHour){
+  inputElement.css() //add a css selector? 
 } else if (i === currentHour) {
   add present colour
 } else {
   add future colour;
 }*/
+}
