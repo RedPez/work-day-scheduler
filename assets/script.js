@@ -9,21 +9,31 @@ function myTimer() {
 }
 
 /*Script for task input*/
-//select inputElement
-const inputElement = document.querySelector("#input-element-1");
+let timeBlocks = 11;
 
-//Keep saved content visible on page from local storage
-const savedContent = localStorage.getItem("input-1");
-if (savedContent) {
-  inputElement.innerText = savedContent;
+// for loop to go through each element at a time
+for (let i = 1; i <= timeBlocks; i++) {
+  // select inputElement
+  const inputElement = document.querySelector("#input-element-${i}");
+
+  // Keep saved content visible on page from local storage
+  const savedContent = localStorage.getItem("input-${i}");
+  if (savedContent) {
+    inputElement.innerText = savedContent;
+  }
+
+  // Save content to local storage
+  function saveToLocalStorage() {
+    let updatedContent = inputElement.innerText;
+    console.log("Your ${i}am Task is: " + updatedContent);
+
+    localStorage.setItem("input-${i}", updatedContent);
+  }
+
+  // Add a click event listener to the "Save" button
+  $("#save-column-${i} .saveBtn").on("click", saveToLocalStorage);
 }
 
-//Save content to local storage
-function saveToLocalStorage() {
-  let updatedContent = inputElement.innerText;
-  console.log("Your 8am Task is: " + updatedContent);
-
-  localStorage.setItem("input-1", updatedContent);
-}
-
-$("#save-column-1 .saveBtn").on("click", saveToLocalStorage);
+/*Script for colour change depending on time*/
+let timeColor = document.querySelector("");
+//hmmmmm how do we do this?
