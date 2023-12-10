@@ -1,5 +1,5 @@
 /* Script for the day/date timer*/
-setInterval(myTimer, 1000);
+setInterval(myTimer, 60000);
 
 function myTimer() {
   let day = dayjs().format("dddd");
@@ -37,3 +37,19 @@ for (let i = 1; i <= timeBlocks; i++) {
 /*Script for colour change depending on time*/
 let timeColor = document.querySelector("");
 //hmmmmm how do we do this?
+
+//probably need a function and a loop
+
+//Loop
+for (let i = 1; i <= timeBlocks; i++) {
+  // select inputElement
+  const inputElement = document.querySelector("#input-element-${i}");
+}
+
+/*if (i < currentHour){
+  add past colour
+} else if (i === currentHour) {
+  add present colour
+} else {
+  add future colour;
+}*/
