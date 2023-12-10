@@ -13,10 +13,10 @@ let timeBlocks = 11;
 // for loop to go through each element at a time
 for (let i = 1; i <= timeBlocks; i++) {
   // select inputElement
-  const inputElement = document.querySelector("#input-element-${i}");
+  const inputElement = document.querySelector(`#input-element-${i}`);
 
   // Keep saved content visible on page from local storage
-  const savedContent = localStorage.getItem("input-${i}");
+  const savedContent = localStorage.getItem(`input-${i}`);
   if (savedContent) {
     inputElement.innerText = savedContent;
   }
@@ -24,35 +24,59 @@ for (let i = 1; i <= timeBlocks; i++) {
   // Save content to local storage
   function saveToLocalStorage() {
     let updatedContent = inputElement.innerText;
-    console.log("Your ${i}am Task is: " + updatedContent);
+    console.log(`Your ${i}am Task is: ` + updatedContent);
 
-    localStorage.setItem("input-${i}", updatedContent);
+    localStorage.setItem(`input-${i}`, updatedContent);
   }
 
   // Add a click event listener to the "Save" button
-  $("#save-column-${i} .saveBtn").on("click", saveToLocalStorage);
+  $(`#save-column-${i} .saveBtn`).on("click", saveToLocalStorage);
 }
+
+//Add times to calendar using jQuery
+
+// Function to set the time for each element with ID starting from 1 to timeBlocks
+function setTimeForElements() {
+  for (let i = 1; i <= timeBlocks; i++) {
+    // Get the current time in 24-hour format
+    const currentTime = dayjs().hour(i).minute(0).format("HH:mm");
+
+    // Set the time for the corresponding element
+    $(`#time-${i}`).text(currentTime);
+
+    // Display the time within the <p> tag with class "hour"
+    $(`#time-${i}`).closest(".hour").attr("data-time", currentTime);
+  }
+}
+
+// Call the function to set the time when the page loads
+setTimeForElements();
 
 /*Script for colour change depending on time*/
 let currentHour = dayjs().hour();
-//hmmmmm how do we do this?
 
-//Function
+//Function for colour change dependent on time
+//set the refresh rate for the page
+setInterval(changeColour, 60000);
+//the actual function
 function changeColour() {
-  //Loop
+  // Loop to move through each time block and add/remove class as needed.
   for (let i = 1; i <= timeBlocks; i++) {
-    // select inputElement
-    const inputElement = document.querySelector("#input-element-${i}");
+    // Select inputColumn by ID
+    const inputColumn = $(`#input-column-${i}`);
 
-    inputElement.classList.remove("past", "present", "future");
+    // Remove all classes
+    inputColumn.removeClass("past present future");
 
-    //Indicate if past, present or future and change colour
+    // Indicate if past, present, or future via class
     if (i < currentHour) {
-      inputElement.classList.add("past");
+      inputColumn.addClass("past");
     } else if (i === currentHour) {
-      inputElement.classList.add("present");
+      inputColumn.addClass("present");
     } else {
-      inputElement.classList.add("future");
+      inputColumn.addClass("future");
     }
   }
 }
+
+changeColour();
