@@ -34,7 +34,6 @@ header {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
 }
 
 .hour {
@@ -69,6 +68,9 @@ header {
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+.save {
+  border-top: 1px dashed #000000;
 }
 
 /*Styles for timeblock container*/
