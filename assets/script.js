@@ -53,9 +53,6 @@ function diaryTimeElement() {
   }
 }
 
-// Call the function to set the time when the page loads
-diaryTimeElement();
-
 /*Script for colour change depending on time*/
 let currentHour = dayjs().hour();
 
@@ -73,9 +70,9 @@ function changeColour() {
     inputColumn.removeClass("past present future");
 
     // Indicate if past, present, or future via class
-    if (i < diaryTimeElement) {
+    if (i + 7 < currentHour) {
       inputColumn.addClass("past");
-    } else if (i === diaryTimeElement) {
+    } else if (i + 7 === currentHour) {
       inputColumn.addClass("present");
     } else {
       inputColumn.addClass("future");
@@ -83,4 +80,9 @@ function changeColour() {
   }
 }
 
+// Call the functions to set the time when the page loads
+diaryTimeElement();
+
 changeColour();
+
+setInterval(changeColour, 60000);

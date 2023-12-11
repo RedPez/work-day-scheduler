@@ -51,7 +51,7 @@ There are no unique installation requirements for this product. The app will run
 The app has simple functionality.
 To start, click into the task column of the timetable and input a task or event using the computer keyboard. When finished typing, click the save button. The task will be saved into local storage and remain on the page even when refreshed. To alter an event click into the task column and either overwrite the original task or add an additional task, then click the save button to update the local storage.
 
-<img src="/assets/images/AppImage.png" alt="Work-day timetable">
+<img src="/assets/images/WorkDayImage.png" alt="Work-day timetable">
 
 ## Credits
 
